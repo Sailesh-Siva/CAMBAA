@@ -9,7 +9,7 @@ from ultralytics import YOLO
 from timm import create_model
 from PIL import Image
 import torchvision.transforms as transforms
-
+from huggingface_hub import hf_hub_download
 from pytorch_grad_cam import EigenCAM
 
 
@@ -31,16 +31,25 @@ os.makedirs(RESULT_FOLDER, exist_ok=True)
 # PATHS
 # =========================================================
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+YOLO_WEIGHTS = hf_hub_download(
+    repo_id="saileshsiva/CAMBAA",
+    filename="best.pt"
+)
 
-YOLO_WEIGHTS = os.path.join(BASE_DIR, "models", "best.pt")
+MODEL_PATH = hf_hub_download(
+    repo_id="saileshsiva/CAMBAA",
+    filename="evcc_weights_only.pth"
+)
 
-MODEL_PATH = os.path.join(BASE_DIR, "models", "evcc_weights_only.pth")
+SVR_ABOVE_8_PATH = hf_hub_download(
+    repo_id="saileshsiva/CAMBAA",
+    filename="svr_above_8.pkl"
+)
 
-SVR_ABOVE_8_PATH = os.path.join(BASE_DIR, "models", "svr_above_8.pkl")
-
-SVR_BELOW_8_PATH = os.path.join(BASE_DIR, "models", "svr_below_8.pkl")
-
+SVR_BELOW_8_PATH = hf_hub_download(
+    repo_id="saileshsiva/CAMBAA",
+    filename="svr_below_8.pkl"
+)
 
 # =========================================================
 # LOAD YOLO
