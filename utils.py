@@ -35,7 +35,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 YOLO_WEIGHTS = os.path.join(BASE_DIR, "models", "best.pt")
 
-MODEL_PATH = os.path.join(BASE_DIR, "models", "evcc_best.pth")
+MODEL_PATH = os.path.join(BASE_DIR, "models", "evcc_weights_only.pth")
 
 SVR_ABOVE_8_PATH = os.path.join(BASE_DIR, "models", "svr_above_8.pkl")
 

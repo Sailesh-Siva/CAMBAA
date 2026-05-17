@@ -1,9 +1,15 @@
-models/
+models/*
+!models/.gitkeep
+
 static/*.png
+
 __pycache__/
 *.pyc
 
 uploads/*
+!uploads/.gitkeep
+
 static/results/*
+!static/results/.gitkeep
 
 *:Zone.Identifier
