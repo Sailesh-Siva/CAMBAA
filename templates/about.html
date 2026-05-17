@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}About Bone Age Prediction{% endblock %}
+
+{% block content %}
+
+<div class="container"
+     style="display:flex; flex-wrap:wrap; gap:3rem; align-items:center;">
+
+    <div style="flex:1 1 38%; display:flex; justify-content:center;">
+
+        <img src="{{ url_for('static', filename='boneage_example.png') }}"
+            alt="Bone Age Example"
+            style="width:100%;
+                    max-width:420px;
+                    border-radius:12px;
+                    box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+
+    </div>
+
+    <div style="flex:1 1 45%;">
+
+        <h2>
+            About
+            <span style="color:#007bff;">
+                Bone Age Prediction
+            </span>
+        </h2>
+
+        <p style="font-size:1.1rem;">
+
+            This system predicts skeletal bone age using
+            deep learning and medical image analysis.
+
+        </p>
+
+        <p style="font-size:1.1rem;">
+
+            The model is based on a
+            MaxViT + CBAM architecture and incorporates
+            gender information for improved prediction accuracy.
+
+        </p>
+
+        <p style="font-size:1.1rem;">
+
+            EigenCAM visualizations are generated to provide
+            explainability by highlighting regions important
+            for prediction.
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

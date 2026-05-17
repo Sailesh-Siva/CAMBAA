@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{% block title %}Bone Age Prediction{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 0.5rem 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .left-panel,
+        .right-panel {
+
+            background-color: white;
+
+            border-radius: 10px;
+
+            padding: 1.5rem;
+
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .left-panel {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .right-panel {
+            flex: 1.2;
+            min-width: 300px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+
+            padding: 0.6rem 1.2rem;
+
+            background-color: #2c3e50;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #1f2d3d;
+        }
+
+        input[type=file] {
+            margin-bottom: 1rem;
+        }
+
+        select {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-left">
+
+        <img src="{{ url_for('static', filename='sastralogo.png') }}"
+             alt="Logo"
+             class="logo" />
+
+        <h1>Bone Age Prediction System</h1>
+
+    </div>
+
+    <div>
+        <p>Dr. Brindha GR</p>
+    </div>
+
+</header>
+
+<nav>
+
+    <a href="/about">About</a>
+
+    <a href="/boneage">Bone Age</a>
+
+    <a href="/metrics">Metrics</a>
+
+</nav>
+
+<div class="container">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+models/
+static/*.png
+__pycache__/
+*.pyc
+
+uploads/*
+static/results/*
+
+*:Zone.Identifier

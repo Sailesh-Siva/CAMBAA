@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Bone Age Prediction{% endblock %}
+
+{% block content %}
+
+<div class="left-panel">
+
+    <h2>Upload X-Ray Image</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- ========================================= -->
+        <!-- IMAGE -->
+        <!-- ========================================= -->
+
+        <input type="file"
+               name="image"
+               accept="image/*"
+               required>
+
+        <br>
+
+        <!-- ========================================= -->
+        <!-- GENDER -->
+        <!-- ========================================= -->
+
+        <label>
+            <strong>Select Gender:</strong>
+        </label>
+
+        <select name="gender" required>
+
+            <option value="">
+                Choose Gender
+            </option>
+
+            <option value="male">
+                Male
+            </option>
+
+            <option value="female">
+                Female
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <!-- ========================================= -->
+        <!-- AGE GROUP -->
+        <!-- ========================================= -->
+
+        <label>
+            <strong>Select Age Group:</strong>
+        </label>
+
+        <select name="age_group" required>
+
+            <option value="">
+                Choose Age Group
+            </option>
+
+            <option value="below_8">
+                Below 8 Years
+            </option>
+
+            <option value="above_8">
+                Above 8 Years
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <!-- ========================================= -->
+        <!-- SUBMIT -->
+        <!-- ========================================= -->
+
+        <button type="submit">
+            Predict Bone Age
+        </button>
+
+    </form>
+    {% if error %}
+
+        <div style="
+            color: #ff4d4d;
+            margin-top: 1rem;
+            font-weight: bold;
+        ">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+    {% if predicted_age %}
+
+        <hr style="margin: 1.5rem 0;">
+
+        <h3>Prediction Result</h3>
+
+        <p>
+            <strong>Predicted Bone Age:</strong>
+            {{ predicted_age }} months
+        </p>
+
+        <p>
+            <strong>Gender:</strong>
+            {{ gender }}
+        </p>
+
+        <p>
+            <strong>Age Group:</strong>
+            {{ age_group }}
+        </p>
+
+    {% endif %}
+
+</div>
+
+<div class="right-panel">
+
+    {% if result_image %}
+
+        <h3>EigenCAM Visualization</h3>
+
+        <img src="{{ url_for('result_file',
+                              filename=result_image) }}"
+             alt="EigenCAM Result">
+
+    {% else %}
+
+        <p style="color:#888;">
+            Upload an X-ray image to generate prediction.
+        </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
