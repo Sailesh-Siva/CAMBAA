@@ -46,14 +46,6 @@ SVR_BELOW_8_PATH = os.path.join(BASE_DIR, "models", "svr_below_8.pkl")
 # LOAD YOLO
 # =========================================================
 
-_original_load = torch.load
-
-def custom_load(*args, **kwargs):
-    kwargs["weights_only"] = False
-    return _original_load(*args, **kwargs)
-
-torch.load = custom_load
-
 yolo_model = YOLO(YOLO_WEIGHTS)
 
 print("YOLO model loaded")
