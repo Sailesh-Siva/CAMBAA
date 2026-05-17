@@ -290,14 +290,12 @@ class ModelWrapper(nn.Module):
 
 model = MaxViTBoneAgeRegressor().to(DEVICE)
 
-checkpoint = torch.load(
+state_dict = torch.load(
     MODEL_PATH,
     map_location=DEVICE
 )
 
-model.load_state_dict(
-    checkpoint["state_dict"]
-)
+model.load_state_dict(state_dict)
 
 model.eval()
 
