@@ -10,8 +10,8 @@
     <div style="flex:1 1 38%; display:flex; justify-content:center;">
 
         <img src="{{ url_for('static', filename='boneage_example.png') }}"
-            alt="Bone Age Example"
-            style="width:100%;
+             alt="Bone Age Example"
+             style="width:100%;
                     max-width:420px;
                     border-radius:12px;
                     box-shadow:0 6px 15px rgba(0,0,0,0.1);">
@@ -23,30 +23,20 @@
         <h2>
             About
             <span style="color:#007bff;">
-                Bone Age Prediction
+                CAMBAA Framework
             </span>
         </h2>
 
-        <p style="font-size:1.1rem;">
+        <p style="font-size:1.1rem; line-height:1.9;">
 
-            This system predicts skeletal bone age using
-            deep learning and medical image analysis.
-
-        </p>
-
-        <p style="font-size:1.1rem;">
-
-            The model is based on a
-            MaxViT + CBAM architecture and incorporates
-            gender information for improved prediction accuracy.
-
-        </p>
-
-        <p style="font-size:1.1rem;">
-
-            EigenCAM visualizations are generated to provide
-            explainability by highlighting regions important
-            for prediction.
+            The CAMBAA framework performs automated bone age
+            assessment using YOLOv26-based hand localization,
+            a MaxViT backbone with Residual CBAM attention,
+            multimodal gender-aware feature fusion, and
+            Support Vector Regression (SVR) for final prediction.
+            Eigen-CAM explainability is additionally integrated
+            to highlight clinically relevant skeletal regions
+            influencing the prediction process.
 
         </p>
 

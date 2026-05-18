@@ -8,7 +8,7 @@
 
     <h1>Bone Age Prediction Metrics</h1>
 
-    <h2>Final Validation Performance</h2>
+    <h2>Regression Performance</h2>
 
     <table style="width:100%;
                   border-collapse:collapse;
@@ -18,93 +18,58 @@
         <tr style="background:#2c3e50; color:white;">
 
             <th style="padding:12px; border:1px solid #ddd;">
-                Metric
+                Dataset Split
             </th>
 
             <th style="padding:12px; border:1px solid #ddd;">
-                Value
+                MAE (Months)
+            </th>
+
+            <th style="padding:12px; border:1px solid #ddd;">
+                RMSE (Months)
             </th>
 
         </tr>
 
         <tr>
             <td style="padding:12px; border:1px solid #ddd;">
-                Epoch
+                Below 8 Years
             </td>
+
             <td style="padding:12px; border:1px solid #ddd;">
-                41
+                3.11
+            </td>
+
+            <td style="padding:12px; border:1px solid #ddd;">
+                4.03
             </td>
         </tr>
 
         <tr>
             <td style="padding:12px; border:1px solid #ddd;">
-                Training Loss
+                Above 8 Years
             </td>
+
             <td style="padding:12px; border:1px solid #ddd;">
-                0.0371
+                5.13
+            </td>
+
+            <td style="padding:12px; border:1px solid #ddd;">
+                6.65
             </td>
         </tr>
 
         <tr>
-            <td style="padding:12px; border:1px solid #ddd;">
-                Training MAE
+            <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                Overall Performance
             </td>
-            <td style="padding:12px; border:1px solid #ddd;">
-                8.47 months
-            </td>
-        </tr>
 
-        <tr>
-            <td style="padding:12px; border:1px solid #ddd;">
-                Validation Loss
+            <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                4.94
             </td>
-            <td style="padding:12px; border:1px solid #ddd;">
-                0.0230
-            </td>
-        </tr>
 
-        <tr>
-            <td style="padding:12px; border:1px solid #ddd;">
-                Validation MAE
-            </td>
-            <td style="padding:12px; border:1px solid #ddd;">
-                5.23 months
-            </td>
-        </tr>
-
-        <tr>
-            <td style="padding:12px; border:1px solid #ddd;">
-                RMSE
-            </td>
-            <td style="padding:12px; border:1px solid #ddd;">
-                6.85
-            </td>
-        </tr>
-
-        <tr>
-            <td style="padding:12px; border:1px solid #ddd;">
-                R² Score
-            </td>
-            <td style="padding:12px; border:1px solid #ddd;">
-                0.9065
-            </td>
-        </tr>
-
-        <tr>
-            <td style="padding:12px; border:1px solid #ddd;">
-                Learning Rate (Head)
-            </td>
-            <td style="padding:12px; border:1px solid #ddd;">
-                6.25e-06
-            </td>
-        </tr>
-
-        <tr>
-            <td style="padding:12px; border:1px solid #ddd;">
-                Learning Rate (Backbone)
-            </td>
-            <td style="padding:12px; border:1px solid #ddd;">
-                6.25e-07
+            <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                6.44
             </td>
         </tr>
 
@@ -112,24 +77,105 @@
 
     <div style="margin-top:2rem;">
 
-        <h2>Model Architecture</h2>
+        <h2>YOLOv26 Hand Localization Performance</h2>
+
+        <table style="width:100%;
+                      border-collapse:collapse;
+                      margin-top:1rem;
+                      background:white;">
+
+            <tr style="background:#2c3e50; color:white;">
+
+                <th style="padding:12px; border:1px solid #ddd;">
+                    Metric
+                </th>
+
+                <th style="padding:12px; border:1px solid #ddd;">
+                    Value
+                </th>
+
+            </tr>
+
+            <tr>
+                <td style="padding:12px; border:1px solid #ddd;">
+                    Precision
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    99.7%
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding:12px; border:1px solid #ddd;">
+                    Recall
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    99.4%
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding:12px; border:1px solid #ddd;">
+                    mAP@50
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    99.5%
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding:12px; border:1px solid #ddd;">
+                    mAP@50-95
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    85.6%
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div style="margin-top:2rem;">
+
+        <h2>CAMBAA Framework Architecture</h2>
 
         <ul style="font-size:1.05rem; line-height:1.8;">
 
             <li>
-                MaxViT Backbone
+                YOLOv26-based Hand Region Localization
             </li>
 
             <li>
-                CBAM Attention Module
+                MaxViT Backbone for Hierarchical Feature Extraction
             </li>
 
             <li>
-                Gender-aware Regression Head
+                Residual Convolutional Block Attention Module (R-CBAM)
             </li>
 
             <li>
-                EigenCAM Explainability
+                Adaptive Average Pooling-based Feature Compression
+            </li>
+
+            <li>
+                Gender Embedding Branch with GELU Activation
+            </li>
+
+            <li>
+                Multimodal Feature Fusion
+            </li>
+
+            <li>
+                Support Vector Regression (SVR) with RBF Kernel
+            </li>
+
+            <li>
+                Eigen-CAM Explainability Framework
             </li>
 
         </ul>
