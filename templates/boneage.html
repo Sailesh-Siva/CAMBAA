@@ -81,16 +81,8 @@
             Predict Bone Age
         </button>
 
-        <div id="loading-text"
-            style="
-                display:none;
-                margin-top:10px;
-                color:#888;
-                font-weight:bold;
-            ">
-            Loading<span id="dots"></span>
-        </div>
     </form>
+
     {% if error %}
 
         <div style="
@@ -130,6 +122,19 @@
 
 <div class="right-panel">
 
+    <div id="right-loading"
+         style="
+            display:none;
+            font-size:2rem;
+            font-weight:bold;
+            color:#555;
+            text-align:center;
+         ">
+
+        Loading<span id="right-dots"></span>
+
+    </div>
+
     {% if result_image %}
 
         <h3>EigenCAM Visualization</h3>
@@ -140,7 +145,11 @@
 
     {% else %}
 
-        <p style="color:#888;">
+        <p id="default-message"
+           style="
+                color:#888;
+                text-align:center;
+           ">
             Upload an X-ray image to generate prediction.
         </p>
 
@@ -151,20 +160,28 @@
 <script>
 
 const form = document.querySelector("form");
-const loadingText = document.getElementById("loading-text");
-const dots = document.getElementById("dots");
+
+const rightLoading = document.getElementById("right-loading");
+
+const rightDots = document.getElementById("right-dots");
+
+const defaultMessage = document.getElementById("default-message");
 
 let dotCount = 0;
 
 form.addEventListener("submit", function() {
 
-    loadingText.style.display = "block";
+    rightLoading.style.display = "block";
+
+    if (defaultMessage) {
+        defaultMessage.style.display = "none";
+    }
 
     setInterval(() => {
 
         dotCount = (dotCount + 1) % 4;
 
-        dots.textContent = ".".repeat(dotCount);
+        rightDots.textContent = ".".repeat(dotCount);
 
     }, 500);
 

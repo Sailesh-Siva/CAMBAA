@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <div>
-        <h1>Bone Age Prediction System</h1>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
 
-        <p style="
-            margin: 0;
-            font-size: 0.95rem;
-            color: #d0d7de;
-        ">
-            Research Scholar Fellowship funded by TIC, SASTRA
-        </p>
-    </div>
+    <title>
+        {% block title %}
+            Bone Age Prediction
+        {% endblock %}
+    </title>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -29,45 +27,80 @@
         }
 
         header {
+
             background-color: #2c3e50;
+
             color: white;
+
             padding: 1rem 2rem;
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             flex-wrap: wrap;
         }
 
         .header-left {
+
             display: flex;
+
             align-items: center;
+
             gap: 1rem;
         }
 
+        .header-text h1 {
+
+            margin: 0;
+        }
+
+        .header-text p {
+
+            margin: 0;
+
+            font-size: 0.95rem;
+
+            color: #d0d7de;
+        }
+
         .logo {
+
             height: 50px;
+
             width: auto;
         }
 
         nav {
+
             background-color: #34495e;
+
             padding: 0.5rem 1rem;
+
             text-align: center;
         }
 
         nav a {
+
             color: white;
+
             margin: 0 1rem;
+
             text-decoration: none;
+
             font-weight: bold;
         }
 
         .container {
+
             display: flex;
+
             gap: 2rem;
+
             padding: 2rem;
+
             flex-wrap: wrap;
         }
 
@@ -84,17 +117,24 @@
         }
 
         .left-panel {
+
             flex: 1;
+
             min-width: 300px;
         }
 
         .right-panel {
+
             flex: 1.2;
+
             min-width: 300px;
 
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             justify-content: center;
         }
 
@@ -116,21 +156,28 @@
         }
 
         button:hover {
+
             background-color: #1f2d3d;
         }
 
         input[type=file] {
+
             margin-bottom: 1rem;
         }
 
         select {
+
             padding: 0.5rem;
+
             margin-bottom: 1rem;
+
             width: 100%;
         }
 
         img {
+
             max-width: 100%;
+
             border-radius: 10px;
         }
 
@@ -148,7 +195,17 @@
              alt="Logo"
              class="logo" />
 
-        <h1>Bone Age Prediction System</h1>
+        <div class="header-text">
+
+            <h1>
+                Bone Age Prediction System
+            </h1>
+
+            <p>
+                Research Scholar Fellowship funded by TIC, SASTRA
+            </p>
+
+        </div>
 
     </div>
 
@@ -156,11 +213,17 @@
 
 <nav>
 
-    <a href="/about">About</a>
+    <a href="/about">
+        About
+    </a>
 
-    <a href="/boneage">Bone Age</a>
+    <a href="/boneage">
+        Bone Age
+    </a>
 
-    <a href="/metrics">Metrics</a>
+    <a href="/metrics">
+        Metrics
+    </a>
 
 </nav>
 
@@ -172,4 +235,5 @@
 </div>
 
 </body>
+
 </html>
