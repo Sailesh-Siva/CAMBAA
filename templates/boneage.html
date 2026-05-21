@@ -81,6 +81,15 @@
             Predict Bone Age
         </button>
 
+        <div id="loading-text"
+            style="
+                display:none;
+                margin-top:10px;
+                color:#888;
+                font-weight:bold;
+            ">
+            Loading<span id="dots"></span>
+        </div>
     </form>
     {% if error %}
 
@@ -138,5 +147,29 @@
     {% endif %}
 
 </div>
+
+<script>
+
+const form = document.querySelector("form");
+const loadingText = document.getElementById("loading-text");
+const dots = document.getElementById("dots");
+
+let dotCount = 0;
+
+form.addEventListener("submit", function() {
+
+    loadingText.style.display = "block";
+
+    setInterval(() => {
+
+        dotCount = (dotCount + 1) % 4;
+
+        dots.textContent = ".".repeat(dotCount);
+
+    }, 500);
+
+});
+
+</script>
 
 {% endblock %}
