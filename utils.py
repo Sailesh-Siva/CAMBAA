@@ -12,7 +12,7 @@ import torchvision.transforms as transforms
 from huggingface_hub import hf_hub_download
 from pytorch_grad_cam import EigenCAM
 
-
+from utils_model2 import model2
 # =========================================================
 # SETTINGS
 # =========================================================
@@ -424,7 +424,7 @@ def crop_hand_with_yolo(image_path):
 # MAIN PREDICTION FUNCTION
 # =========================================================
 
-def predict_bone_age(
+def predict_bone_age_model1(
     image_path,
     gender_value,
     svr_type="above_8",
@@ -494,6 +494,158 @@ def predict_bone_age(
         )
 
     prediction = round(prediction)
+
+    # =====================================================
+    # EIGENCAM
+    # =====================================================
+
+    wrapped_model = ModelWrapper(
+        model,
+        gender
+    )
+
+    wrapped_model.eval()
+
+    target_layers = [
+        model.backbone.stages[-1]
+    ]
+
+    cam_extractor = EigenCAM(
+        model=wrapped_model,
+        target_layers=target_layers
+    )
+
+    targets = [RegressionTarget()]
+
+    cam = cam_extractor(
+        input_tensor=input_tensor,
+        targets=targets
+    )[0]
+
+    # =====================================================
+    # UNNORMALIZE IMAGE
+    # =====================================================
+
+    img = image_tensor.permute(1, 2, 0).cpu().numpy()
+
+    mean = np.array([0.485, 0.456, 0.406])
+    std  = np.array([0.229, 0.224, 0.225])
+
+    img = std * img + mean
+
+    img = np.clip(img, 0, 1)
+
+    # =====================================================
+    # RESIZE CAM
+    # =====================================================
+
+    cam = cv2.resize(
+        cam,
+        (img.shape[1], img.shape[0])
+    )
+
+    heatmap = cv2.applyColorMap(
+        np.uint8(255 * cam),
+        cv2.COLORMAP_JET
+    )
+
+    heatmap = cv2.cvtColor(
+        heatmap,
+        cv2.COLOR_BGR2RGB
+    )
+
+    heatmap = heatmap.astype(np.float32) / 255.0
+
+    # =====================================================
+    # OVERLAY
+    # =====================================================
+
+    overlay = 0.6 * img + 0.4 * heatmap
+
+    overlay = np.clip(overlay, 0, 1)
+
+    # =====================================================
+    # SAVE RESULT
+    # =====================================================
+
+    save_img = (overlay * 255).astype(np.uint8)
+
+    result_path = os.path.join(
+        RESULT_FOLDER,
+        output_filename
+    )
+
+    cv2.imwrite(
+        result_path,
+        cv2.cvtColor(
+            save_img,
+            cv2.COLOR_RGB2BGR
+        )
+    )
+
+    return prediction, result_path
+
+def predict_bone_age_model2(
+    image_path,
+    gender_value,
+    svr_type="above_8",
+    output_filename="eigencam_overlay.png"
+):
+
+    crop = crop_hand_with_yolo(image_path)
+
+    crop_rgb = cv2.cvtColor(
+        crop,
+        cv2.COLOR_BGR2RGB
+    )
+
+    image_pil = Image.fromarray(crop_rgb)
+
+    image_tensor = transform(image_pil)
+
+    input_tensor = image_tensor.unsqueeze(0).to(DEVICE)
+
+    gender = torch.tensor(
+        [gender_value],
+        dtype=torch.float32
+    ).to(DEVICE)
+
+    # =====================================================
+    # FEATURE EXTRACTION
+    # =====================================================
+
+    with torch.no_grad():
+
+        features = model.extract_features(
+            input_tensor,
+            gender
+        )
+
+    features = features.cpu().numpy()
+
+    # =====================================================
+    # MODEL2 PREDICTION
+    # =====================================================
+
+    features = features.flatten()
+    
+    dl_feature_dict = {
+        f"feature_{i}": float(v)
+        for i, v in enumerate(features)
+    }
+
+    prediction = model2(
+
+        image_path=image_path,
+
+        gender=gender_value,
+
+        age_group=svr_type,
+
+        dl_feature_dict=dl_feature_dict
+    )
+
+    prediction = round(prediction["predicted_boneage_months"])
 
     # =====================================================
     # EIGENCAM

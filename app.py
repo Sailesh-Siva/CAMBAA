@@ -16,7 +16,10 @@ from werkzeug.utils import secure_filename
 # BONE AGE INFERENCE
 # =========================================================
 
-from utils import predict_bone_age
+from utils import (
+    predict_bone_age_model1,
+    predict_bone_age_model2
+)
 
 
 # =========================================================
@@ -123,9 +126,9 @@ def boneage():
 
         gender = request.form.get('gender')
 
-        age_group = request.form.get(
-            'age_group'
-        )
+        age_group = request.form.get('age_group')
+
+        model_type = request.form.get("model_type")
 
         # =================================================
         # SAVE INPUT IMAGE
@@ -168,15 +171,30 @@ def boneage():
         # =================================================
 
         try:
+            
+            if model_type == "model1":
 
-            predicted_age, result_path = (
-                predict_bone_age(
+                predicted_age, result_path = predict_bone_age_model1(
                     image_path=filepath,
                     gender_value=gender_value,
                     svr_type=age_group,
                     output_filename=result_filename
                 )
-            )
+
+            elif model_type == "model2":
+
+                predicted_age, result_path = predict_bone_age_model2(
+                    image_path=filepath,
+                    gender_value=gender_value,
+                    svr_type=age_group,
+                    output_filename=result_filename
+                )
+
+            else:
+
+                raise ValueError(
+                    "Please select a prediction model."
+                )
 
         except Exception as e:
 

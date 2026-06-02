@@ -4,11 +4,13 @@
 
 {% block content %}
 
-<div style="padding:2rem; width:100%;">
+<div style="padding:0 2rem 2rem 2rem; width:100%;">
 
     <h1>Bone Age Prediction Metrics</h1>
 
-    <h2>Regression Performance</h2>
+    <!-- YOLO Metrics -->
+
+    <h2>YOLOv26 Hand Localization Performance</h2>
 
     <table style="width:100%;
                   border-collapse:collapse;
@@ -18,66 +20,62 @@
         <tr style="background:#2c3e50; color:white;">
 
             <th style="padding:12px; border:1px solid #ddd;">
-                Dataset Split
+                Metric
             </th>
 
             <th style="padding:12px; border:1px solid #ddd;">
-                MAE (Months)
-            </th>
-
-            <th style="padding:12px; border:1px solid #ddd;">
-                RMSE (Months)
+                Value
             </th>
 
         </tr>
 
         <tr>
             <td style="padding:12px; border:1px solid #ddd;">
-                Below 8 Years
+                Precision
             </td>
 
             <td style="padding:12px; border:1px solid #ddd;">
-                3.11
-            </td>
-
-            <td style="padding:12px; border:1px solid #ddd;">
-                4.03
+                99.7%
             </td>
         </tr>
 
         <tr>
             <td style="padding:12px; border:1px solid #ddd;">
-                Above 8 Years
+                Recall
             </td>
 
             <td style="padding:12px; border:1px solid #ddd;">
-                5.13
-            </td>
-
-            <td style="padding:12px; border:1px solid #ddd;">
-                6.65
+                99.4%
             </td>
         </tr>
 
         <tr>
-            <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
-                Overall Performance
+            <td style="padding:12px; border:1px solid #ddd;">
+                mAP@50
             </td>
 
-            <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
-                4.94
+            <td style="padding:12px; border:1px solid #ddd;">
+                99.5%
+            </td>
+        </tr>
+
+        <tr>
+            <td style="padding:12px; border:1px solid #ddd;">
+                mAP@50-95
             </td>
 
-            <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
-                6.44
+            <td style="padding:12px; border:1px solid #ddd;">
+                85.6%
             </td>
         </tr>
 
     </table>
 
+    <!-- Model Comparison -->
+
     <div style="margin-top:2rem;">
 
-        <h2>YOLOv26 Hand Localization Performance</h2>
+        <h2>Bone Age Prediction Model Comparison</h2>
 
         <table style="width:100%;
                       border-collapse:collapse;
@@ -87,98 +85,94 @@
             <tr style="background:#2c3e50; color:white;">
 
                 <th style="padding:12px; border:1px solid #ddd;">
-                    Metric
+                    Dataset Split
                 </th>
 
                 <th style="padding:12px; border:1px solid #ddd;">
-                    Value
+                    BoneSight MAE
+                </th>
+
+                <th style="padding:12px; border:1px solid #ddd;">
+                    BoneSight RMSE
+                </th>
+
+                <th style="padding:12px; border:1px solid #ddd;">
+                    BoneScale MAE
+                </th>
+
+                <th style="padding:12px; border:1px solid #ddd;">
+                    BoneScale RMSE
                 </th>
 
             </tr>
 
             <tr>
                 <td style="padding:12px; border:1px solid #ddd;">
-                    Precision
+                    Below 8 Years
                 </td>
 
                 <td style="padding:12px; border:1px solid #ddd;">
-                    99.7%
-                </td>
-            </tr>
-
-            <tr>
-                <td style="padding:12px; border:1px solid #ddd;">
-                    Recall
+                    3.11
                 </td>
 
                 <td style="padding:12px; border:1px solid #ddd;">
-                    99.4%
-                </td>
-            </tr>
-
-            <tr>
-                <td style="padding:12px; border:1px solid #ddd;">
-                    mAP@50
+                    4.03
                 </td>
 
                 <td style="padding:12px; border:1px solid #ddd;">
-                    99.5%
+                    2.29
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    4.37
                 </td>
             </tr>
 
             <tr>
                 <td style="padding:12px; border:1px solid #ddd;">
-                    mAP@50-95
+                    Above 8 Years
                 </td>
 
                 <td style="padding:12px; border:1px solid #ddd;">
-                    85.6%
+                    5.13
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    6.65
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    4.88
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd;">
+                    7.17
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                    Overall
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                    4.94
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                    6.44
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                    4.63
+                </td>
+
+                <td style="padding:12px; border:1px solid #ddd; font-weight:bold;">
+                    6.95
                 </td>
             </tr>
 
         </table>
-
-    </div>
-
-    <div style="margin-top:2rem;">
-
-        <h2>CAMBAA Framework Architecture</h2>
-
-        <ul style="font-size:1.05rem; line-height:1.8;">
-
-            <li>
-                YOLOv26-based Hand Region Localization
-            </li>
-
-            <li>
-                MaxViT Backbone for Hierarchical Feature Extraction
-            </li>
-
-            <li>
-                Residual Convolutional Block Attention Module (R-CBAM)
-            </li>
-
-            <li>
-                Adaptive Average Pooling-based Feature Compression
-            </li>
-
-            <li>
-                Gender Embedding Branch with GELU Activation
-            </li>
-
-            <li>
-                Multimodal Feature Fusion
-            </li>
-
-            <li>
-                Support Vector Regression (SVR) with RBF Kernel
-            </li>
-
-            <li>
-                Eigen-CAM Explainability Framework
-            </li>
-
-        </ul>
 
     </div>
 

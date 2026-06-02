@@ -4,41 +4,110 @@
 
 {% block content %}
 
-<div class="container"
-     style="display:flex; flex-wrap:wrap; gap:3rem; align-items:center;">
+<div style="
+    width:100%;
+    display:flex;
+    gap:3rem;
+    align-items:flex-start;
+    flex-wrap:wrap;
+">
 
-    <div style="flex:1 1 38%; display:flex; justify-content:center;">
+    <!-- LEFT SIDE -->
 
-        <img src="{{ url_for('static', filename='boneage_example.png') }}"
-             alt="Bone Age Example"
-             style="width:100%;
-                    max-width:420px;
-                    border-radius:12px;
-                    box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+    <div style="flex:1.3; min-width:400px;">
+
+        <!-- BoneSight -->
+
+        <div style="
+            background:white;
+            padding:1.8rem;
+            border-radius:12px;
+            box-shadow:0 0 10px rgba(0,0,0,0.08);
+            margin-bottom:1.5rem;
+        ">
+
+            <h2>
+                <span style="color:#007bff;">
+                    BoneSight
+                </span>
+            </h2>
+
+            <p style="font-size:1.05rem; line-height:1.9;">
+
+                BoneSight is an automated bone age assessment
+                framework designed for pediatric hand X-ray
+                analysis. The system combines YOLOv26-based
+                hand localization, a MaxViT backbone enhanced
+                with Residual CBAM attention, multimodal
+                gender-aware feature fusion, and Support
+                Vector Regression (SVR) for final bone age
+                prediction. To improve interpretability,
+                Eigen-CAM explainability is integrated to
+                highlight the skeletal regions that contribute
+                most significantly to each prediction.
+
+            </p>
+
+        </div>
+
+        <!-- BoneScale -->
+
+        <div style="
+            background:white;
+            padding:1.8rem;
+            border-radius:12px;
+            box-shadow:0 0 10px rgba(0,0,0,0.08);
+        ">
+
+            <h2>
+                <span style="color:#28a745;">
+                    BoneScale
+                </span>
+            </h2>
+
+            <p style="font-size:1.05rem; line-height:1.9;">
+
+                BoneScale is a hybrid bone age assessment
+                framework that combines anatomically derived
+                skeletal measurements with deep learning-based
+                image representations. Anatomical features are
+                extracted through principal-axis geometric
+                analysis of individual bones and carpal
+                pixel-area measurements, while complementary
+                deep features are generated using a MaxViT
+                architecture enhanced with CBAM attention
+                mechanisms. These feature sets are fused into
+                a unified representation and processed using
+                an XGBoost regression model to estimate
+                pediatric bone age in months, enabling
+                accurate assessment across diverse stages of
+                skeletal development.
+
+            </p>
+
+        </div>
 
     </div>
 
-    <div style="flex:1 1 45%;">
+    <!-- RIGHT SIDE -->
 
-        <h2>
-            About
-            <span style="color:#007bff;">
-                CAMBAA Framework
-            </span>
-        </h2>
+    <div style="
+        flex:0.9;
+        min-width:320px;
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        padding-top:2rem;
+    ">
 
-        <p style="font-size:1.1rem; line-height:1.9;">
-
-            The CAMBAA framework performs automated bone age
-            assessment using YOLOv26-based hand localization,
-            a MaxViT backbone with Residual CBAM attention,
-            multimodal gender-aware feature fusion, and
-            Support Vector Regression (SVR) for final prediction.
-            Eigen-CAM explainability is additionally integrated
-            to highlight clinically relevant skeletal regions
-            influencing the prediction process.
-
-        </p>
+        <img src="{{ url_for('static', filename='boneage_example.png') }}"
+             alt="Bone Age Example"
+             style="
+                width:100%;
+                max-width:600px;
+                border-radius:12px;
+                box-shadow:0 6px 15px rgba(0,0,0,0.12);
+             ">
 
     </div>
 

@@ -74,12 +74,34 @@
         <br><br>
 
         <!-- ========================================= -->
-        <!-- SUBMIT -->
+        <!-- MODEL SELECTION BUTTONS -->
         <!-- ========================================= -->
 
-        <button type="submit">
-            Predict Bone Age
-        </button>
+        <div style="
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        ">
+
+            <button
+                type="submit"
+                name="model_type"
+                value="model1">
+
+                Predict Using BoneSight
+
+            </button>
+
+            <button
+                type="submit"
+                name="model_type"
+                value="model2">
+
+                Predict Using BoneScale
+
+            </button>
+
+        </div>
 
     </form>
 
