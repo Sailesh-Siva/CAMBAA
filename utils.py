@@ -38,7 +38,7 @@ YOLO_WEIGHTS = hf_hub_download(
 
 MODEL_PATH = hf_hub_download(
     repo_id="saileshsiva/CAMBAA",
-    filename="evcc_weights_only.pth"
+    filename="evcc_weights_fp16.pth"
 )
 
 SVR_ABOVE_8_PATH = hf_hub_download(
@@ -289,7 +289,7 @@ class ModelWrapper(nn.Module):
 # LOAD MAIN MODEL
 # =========================================================
 
-model = MaxViTBoneAgeRegressor().to(DEVICE)
+model = MaxViTBoneAgeRegressor()
 
 state_dict = torch.load(
     MODEL_PATH,
@@ -297,6 +297,18 @@ state_dict = torch.load(
 )
 
 model.load_state_dict(state_dict)
+
+if DEVICE == "cuda":
+    model = model.half()
+
+model = model.to(DEVICE)
+
+print(
+    "Model dtype:",
+    next(model.parameters()).dtype,
+    "Device:",
+    next(model.parameters()).device
+)
 
 model.eval()
 
@@ -443,11 +455,15 @@ def predict_bone_age_model1(
     image_tensor = transform(image_pil)
 
     input_tensor = image_tensor.unsqueeze(0).to(DEVICE)
-
+    
     gender = torch.tensor(
         [gender_value],
         dtype=torch.float32
     ).to(DEVICE)
+
+    if DEVICE == "cuda":
+        input_tensor = input_tensor.half()
+        gender = gender.half()
 
     # =====================================================
     # FEATURE EXTRACTION
@@ -609,6 +625,10 @@ def predict_bone_age_model2(
         [gender_value],
         dtype=torch.float32
     ).to(DEVICE)
+
+    if DEVICE == "cuda":
+        input_tensor = input_tensor.half()
+        gender = gender.half()
 
     # =====================================================
     # FEATURE EXTRACTION
