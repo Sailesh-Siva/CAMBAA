@@ -7,7 +7,7 @@ import joblib
 import pickle
 import numpy as np
 import pandas as pd
-
+import os
 from ultralytics import YOLO
 from scipy.ndimage import label
 from xgboost import XGBRegressor
@@ -16,40 +16,62 @@ from xgboost import XGBRegressor
 # MODEL PATHS
 # ==========================================================
 
-FINGER_MODEL_PATH = "/home/sailesh/projects/rsna_webapp/models/finger_segmentation.pt"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODELS_DIR = os.path.join(BASE_DIR, "models")
 
-CARPAL_MODEL_PATH = "/home/sailesh/projects/rsna_webapp/models/carpal_segmentation.pt"
-
-GE8_CLASSIFIER_PATH = "/home/sailesh/projects/rsna_webapp/models/ge8_classifier.pkl"
-
-GE8_CLASSIFIER_IMPUTER = (
-    "/home/sailesh/projects/rsna_webapp/models/ge8_classifier_imputer.pkl"
+FINGER_MODEL_PATH = os.path.join(
+    MODELS_DIR,
+    "finger_segmentation.pt"
 )
 
-GE8_LABEL_ENCODER = (
-    "/home/sailesh/projects/rsna_webapp/models/ge8_label_encoder.pkl"
+CARPAL_MODEL_PATH = os.path.join(
+    MODELS_DIR,
+    "carpal_segmentation.pt"
 )
 
-GE8_REG_MODEL = (
-    "/home/sailesh/projects/rsna_webapp/models/xgb_boneage_model.json"
+GE8_CLASSIFIER_PATH = os.path.join(
+    MODELS_DIR,
+    "ge8_classifier.pkl"
 )
 
-GE8_PREPROCESS_PIPELINE = (
-    "/home/sailesh/projects/rsna_webapp/models/preprocessing_pipeline.pkl"
+GE8_CLASSIFIER_IMPUTER = os.path.join(
+    MODELS_DIR,
+    "ge8_classifier_imputer.pkl"
 )
 
-LE8_CLASSIFIER_PATH = "/home/sailesh/projects/rsna_webapp/models/le8_classifier.pkl"
-
-LE8_CLASSIFIER_IMPUTER = (
-    "/home/sailesh/projects/rsna_webapp/models/le8_classifier_imputer.pkl"
+GE8_LABEL_ENCODER = os.path.join(
+    MODELS_DIR,
+    "ge8_label_encoder.pkl"
 )
 
-LE8_REG_MODEL = (
-    "/home/sailesh/projects/rsna_webapp/models/le_8_xgb_boneage_model.json"
+GE8_REG_MODEL = os.path.join(
+    MODELS_DIR,
+    "xgb_boneage_model.json"
 )
 
-LE8_PREPROCESS_PIPELINE = (
-    "/home/sailesh/projects/rsna_webapp/models/le_8_preprocessing_pipeline.pkl"
+GE8_PREPROCESS_PIPELINE = os.path.join(
+    MODELS_DIR,
+    "preprocessing_pipeline.pkl"
+)
+
+LE8_CLASSIFIER_PATH = os.path.join(
+    MODELS_DIR,
+    "le8_classifier.pkl"
+)
+
+LE8_CLASSIFIER_IMPUTER = os.path.join(
+    MODELS_DIR,
+    "le8_classifier_imputer.pkl"
+)
+
+LE8_REG_MODEL = os.path.join(
+    MODELS_DIR,
+    "le_8_xgb_boneage_model.json"
+)
+
+LE8_PREPROCESS_PIPELINE = os.path.join(
+    MODELS_DIR,
+    "le_8_preprocessing_pipeline.pkl"
 )
 
 NUM_BONES = 19
