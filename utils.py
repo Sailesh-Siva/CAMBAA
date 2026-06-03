@@ -33,22 +33,22 @@ os.makedirs(RESULT_FOLDER, exist_ok=True)
 
 YOLO_WEIGHTS = hf_hub_download(
     repo_id="saileshsiva/CAMBAA",
-    filename="best.pt"
+    filename="models/best.pt"
 )
 
 MODEL_PATH = hf_hub_download(
     repo_id="saileshsiva/CAMBAA",
-    filename="evcc_weights_fp16.pth"
+    filename="models/evcc_weights_fp16.pth"
 )
 
 SVR_ABOVE_8_PATH = hf_hub_download(
     repo_id="saileshsiva/CAMBAA",
-    filename="svr_above_8.pkl"
+    filename="models/svr_above_8.pkl"
 )
 
 SVR_BELOW_8_PATH = hf_hub_download(
     repo_id="saileshsiva/CAMBAA",
-    filename="svr_below_8.pkl"
+    filename="models/svr_below_8.pkl"
 )
 
 # =========================================================
