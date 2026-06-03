@@ -31,25 +31,13 @@ os.makedirs(RESULT_FOLDER, exist_ok=True)
 # PATHS
 # =========================================================
 
-YOLO_WEIGHTS = hf_hub_download(
-    repo_id="saileshsiva/CAMBAA",
-    filename="models/best.pt"
-)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODELS_DIR = os.path.join(BASE_DIR, "models")
 
-MODEL_PATH = hf_hub_download(
-    repo_id="saileshsiva/CAMBAA",
-    filename="models/evcc_weights_fp16.pth"
-)
-
-SVR_ABOVE_8_PATH = hf_hub_download(
-    repo_id="saileshsiva/CAMBAA",
-    filename="models/svr_above_8.pkl"
-)
-
-SVR_BELOW_8_PATH = hf_hub_download(
-    repo_id="saileshsiva/CAMBAA",
-    filename="models/svr_below_8.pkl"
-)
+YOLO_WEIGHTS = os.path.join(MODELS_DIR, "best.pt")
+MODEL_PATH = os.path.join(MODELS_DIR, "evcc_weights_fp16.pth")
+SVR_ABOVE_8_PATH = os.path.join(MODELS_DIR, "svr_above_8.pkl")
+SVR_BELOW_8_PATH = os.path.join(MODELS_DIR, "svr_below_8.pkl")
 
 # =========================================================
 # LOAD YOLO
